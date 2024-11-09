@@ -5,7 +5,7 @@ namespace CubidSdk.Core.Models.Responses;
 public class CreateUserResponse
 {
     [JsonPropertyName("user_id")]
-    public string? UserId { get; set; }
+    public string UserId { get; set; } = string.Empty;
 
     [JsonPropertyName("is_new_app_user")]
     public bool IsNewAppUser { get; set; }
@@ -17,7 +17,7 @@ public class CreateUserResponse
     public bool IsBlacklisted { get; set; }
 
     [JsonPropertyName("error")]
-    public string? Error { get; set; }
+    public string Error { get; set; } = string.Empty;
 
     public override string ToString()
     {
