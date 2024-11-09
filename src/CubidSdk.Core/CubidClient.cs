@@ -46,6 +46,11 @@ public class CubidClient(HttpClient httpClient, CubidClientSettings clientSettin
         return MakePostRequest<UserScore>("score/fetch_score", new { apikey = _clientSettings.ApiKey, user_id = userId });
     }
 
+    public Task<Result<SecretSavedResponse>> SaveSecret(string userId, string secret)
+    {
+        return MakePostRequest<SecretSavedResponse>("save_secret", new { apikey = _clientSettings.ApiKey, user_id = userId, secret });
+    }
+
     private async Task<Result<T>> MakePostRequest<T>(string relativeUrl, object payload)
     {
         var request = new HttpRequestMessage(HttpMethod.Post, $"https://passport.cubid.me/api/v2/{relativeUrl}");

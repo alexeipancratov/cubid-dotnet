@@ -55,7 +55,7 @@ static async Task InteractWithSdk(CubidClient cubidClient)
 
     var roughLocationResponse = await cubidClient.FetchRoughLocation(userId);
     if (roughLocationResponse.IsSuccess)
-        Console.WriteLine($"Rough Location {roughLocationResponse.Value})");
+        Console.WriteLine($"Rough Location {roughLocationResponse.Value}");
     else
         Console.WriteLine($"Failed to fetch rough location due to: {roughLocationResponse.Error}");
 
@@ -70,4 +70,10 @@ static async Task InteractWithSdk(CubidClient cubidClient)
         Console.WriteLine($"User score: {userScoreResponse.Value}");
     else
         Console.WriteLine($"Failed to fetch user score due to: {userScoreResponse.Error}");
+
+    var saveSecretResponse = await cubidClient.SaveSecret(userId, "TEST-SECRET-VALUE");
+    if (saveSecretResponse.IsSuccess)
+        Console.WriteLine($"Saved user secret: {saveSecretResponse.Value}");
+    else
+        Console.WriteLine($"Failed to save user secret due to: {saveSecretResponse.Error}");
 }
