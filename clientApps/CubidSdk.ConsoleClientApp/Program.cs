@@ -64,4 +64,10 @@ static async Task InteractWithSdk(CubidClient cubidClient)
         Console.WriteLine($"User data: {userDataResponse.Value}");
     else
         Console.WriteLine($"Failed to fetch user data due to: {userDataResponse.Error}");
+
+    var userScoreResponse = await cubidClient.FetchScore(userId);
+    if (userScoreResponse.IsSuccess)
+        Console.WriteLine($"User score: {userScoreResponse.Value}");
+    else
+        Console.WriteLine($"Failed to fetch user score due to: {userScoreResponse.Error}");
 }
