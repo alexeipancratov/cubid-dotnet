@@ -12,7 +12,7 @@
 
 ## Installation
 
-You can install the SDK via npm:
+You can install the SDK via Nuget (not published yet):
 
 ```bash
 dotnet add package CubidSdk
