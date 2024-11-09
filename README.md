@@ -18,6 +18,14 @@ You can install the SDK via Nuget (not published yet):
 dotnet add package CubidSdk
 ```
 
+## Build
+
+You can build this project as a Nuget package using the following command from the project root:
+
+```bash
+dotnet pack
+```
+
 ## API Keys
 
 Use Cubid's [Admin Console](https://admin.cubid.me/admin) to configure your App and get provisioned with a dApp ID and API Keys.
