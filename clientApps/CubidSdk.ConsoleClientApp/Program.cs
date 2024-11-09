@@ -29,5 +29,8 @@ async Task InteractWithSdk(CubidClient cubidClient)
 {
     var response = await cubidClient.CreateUser("test@test.com", "1234567890");
 
-    logger.LogInformation("Created user with ID: {UserResponse}", response);
+    if (response.IsSuccess)
+        logger.LogInformation("Created user: {UserResponse}", response);
+    else
+        logger.LogInformation("Failed to create user due to: {Error}", response.Error);
 }
