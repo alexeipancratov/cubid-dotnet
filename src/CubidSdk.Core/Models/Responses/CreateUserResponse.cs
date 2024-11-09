@@ -17,7 +17,7 @@ public class CreateUserResponse
     public bool IsBlacklisted { get; set; }
 
     [JsonPropertyName("error")]
-    public string Error { get; set; } = string.Empty;
+    public string? Error { get; set; }
 
     public override string ToString()
     {

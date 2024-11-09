@@ -21,6 +21,21 @@ public class CubidClient(HttpClient httpClient, CubidClientSettings clientSettin
         return MakePostRequest<IdentityDetailsResponse>("identity/fetch_identity", new { apikey = _clientSettings.ApiKey, user_id = userId });
     }
 
+    public Task<Result<ExactLocationResponse>> FetchExactLocation(string userId)
+    {
+        return MakePostRequest<ExactLocationResponse>("identity/fetch_exact_location", new { apikey = _clientSettings.ApiKey, user_id = userId });
+    }
+
+    public Task<Result<ApproximateLocationResponse>> FetchApproximateLocation(string userId)
+    {
+        return MakePostRequest<ApproximateLocationResponse>("identity/fetch_approx_location", new { apikey = _clientSettings.ApiKey, user_id = userId });
+    }
+
+    public Task<Result<RoughLocationResponse>> FetchRoughLocation(string userId)
+    {
+        return MakePostRequest<RoughLocationResponse>("identity/fetch_rough_location", new { apikey = _clientSettings.ApiKey, user_id = userId });
+    }
+
     private async Task<Result<T>> MakePostRequest<T>(string relativeUrl, object payload)
     {
         var request = new HttpRequestMessage(HttpMethod.Post, $"https://passport.cubid.me/api/v2/{relativeUrl}");

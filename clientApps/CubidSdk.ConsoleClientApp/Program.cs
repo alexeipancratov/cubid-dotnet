@@ -9,7 +9,7 @@ const string apiKey = "7cc0eab4-1647-4769-b221-49c9d0a35d26";
 #region Setup
 
 var serviceProvider = new ServiceCollection()
-                .AddLogging(configure => configure.AddConsole())
+                .AddLogging(configure => configure.AddConsole().SetMinimumLevel(LogLevel.Warning))
                 .AddCubidClient(dappId, apiKey)
                 .AddHttpClient()
                 .BuildServiceProvider();
@@ -25,7 +25,7 @@ logger.LogInformation("Application finished.");
 
 #endregion
 
-async Task InteractWithSdk(CubidClient cubidClient)
+static async Task InteractWithSdk(CubidClient cubidClient)
 {
     var createUserResult = await cubidClient.CreateUser("test@test.com", "1234567890");
 
@@ -40,4 +40,25 @@ async Task InteractWithSdk(CubidClient cubidClient)
         Console.WriteLine($"Identity details: {identityResponse.Value}");
     else
         Console.WriteLine($"Failed to fetch identity details due to: {identityResponse.Error}");
+
+    var exactLocationResponse = await cubidClient.FetchExactLocation(createUserResult.Value.UserId);
+
+    if (exactLocationResponse.IsSuccess)
+        Console.WriteLine($"Exact location: {exactLocationResponse.Value}");
+    else
+        Console.WriteLine($"Failed to fetch exact location due to: {exactLocationResponse.Error}");
+
+    var approximateLocationRespone = await cubidClient.FetchApproximateLocation(createUserResult.Value.UserId);
+
+    if (approximateLocationRespone.IsSuccess)
+        Console.WriteLine($"Approximate location: {approximateLocationRespone.Value}");
+    else
+        Console.WriteLine($"Failed to fetch approximate location due to: {approximateLocationRespone.Error}");
+
+    var roughLocationResponse = await cubidClient.FetchRoughLocation(createUserResult.Value.UserId);
+
+    if (roughLocationResponse.IsSuccess)
+        Console.WriteLine($"Rough Location {roughLocationResponse.Value})");
+    else
+        Console.WriteLine($"Failed to fetch rough location due to: {roughLocationResponse.Error}");
 }
