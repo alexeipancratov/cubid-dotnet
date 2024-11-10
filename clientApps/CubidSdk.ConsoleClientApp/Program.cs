@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 var serviceProvider = new ServiceCollection()
                 .AddLogging(configure => configure.AddConsole().SetMinimumLevel(LogLevel.Warning))
-                .AddCubidClient(dappId, apiKey)
+                .AddCubidClient("DAPP_ID", "API_KEY")
                 .AddHttpClient()
                 .BuildServiceProvider();
 
