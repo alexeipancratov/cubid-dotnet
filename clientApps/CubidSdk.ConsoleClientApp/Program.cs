@@ -2,10 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-const string dappId = "08dd51f7-15c2-4185-990a-c5fafff66bc7";
-const string apiKey = "7cc0eab4-1647-4769-b221-49c9d0a35d26";
-// const string userId = "f33bd88f-bdf0-43c3-89e4-525bc193cc79";
-
 #region Setup
 
 var serviceProvider = new ServiceCollection()
